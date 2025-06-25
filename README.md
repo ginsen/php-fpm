@@ -1,33 +1,13 @@
 # PHP-FPM Docker Image
 
-Docker container to install and run [PHP-FPM](https://php-fpm.org/).
+This project is inspired in [nanoninja/php-fpm](https://github.com/nanoninja/php-fpm).
 
-[![Build Status](https://travis-ci.org/nanoninja/php-fpm.svg?branch=master)](https://travis-ci.org/nanoninja/php-fpm) [![Automated Build](https://img.shields.io/docker/automated/jrottenberg/ffmpeg.svg)](https://hub.docker.com/r/nanoninja/php-fpm/builds/)
+Docker container to install and run [PHP-FPM](https://php-fpm.org/).
 
 ## Supported branches and respective Dockerfile links
 
-- master [Dockerfile](https://github.com/nanoninja/php-fpm/blob/master/Dockerfile)
-- 8.2 [Dockerfile](https://github.com/nanoninja/php-fpm/blob/8.2/Dockerfile)
-- 8.1 [Dockerfile](https://github.com/nanoninja/php-fpm/blob/8.1/Dockerfile)
-- 8.0 [Dockerfile](https://github.com/nanoninja/php-fpm/blob/8.0/Dockerfile)
-- 7.4.10 [Dockerfile](https://github.com/nanoninja/php-fpm/blob/7.4.10/Dockerfile)
-- 7.4.4 [Dockerfile](https://github.com/nanoninja/php-fpm/blob/7.4.4/Dockerfile)
-- 7.4.2 [Dockerfile](https://github.com/nanoninja/php-fpm/blob/7.4.2/Dockerfile)
-- 7.4.0 [Dockerfile](https://github.com/nanoninja/php-fpm/blob/7.4.0/Dockerfile)
-- 7.3.10 [Dockerfile](https://github.com/nanoninja/php-fpm/blob/7.3.10/Dockerfile)
-- 7.3.9 [Dockerfile](https://github.com/nanoninja/php-fpm/blob/7.3.9/Dockerfile)
-- 7.3.8 [Dockerfile](https://github.com/nanoninja/php-fpm/blob/7.3.8/Dockerfile)
-- 7.3.7 [Dockerfile](https://github.com/nanoninja/php-fpm/blob/7.3.7/Dockerfile)
-- 7.3.6 [Dockerfile](https://github.com/nanoninja/php-fpm/blob/7.3.6/Dockerfile)
-- 7.3.3 [Dockerfile](https://github.com/nanoninja/php-fpm/blob/7.3.3/Dockerfile)
-- 7.3.2 [Dockerfile](https://github.com/nanoninja/php-fpm/blob/7.3.2/Dockerfile)
-- 7.2.15 [Dockerfile](https://github.com/nanoninja/php-fpm/blob/7.2.15/Dockerfile)
-- 7.2.13 [Dockerfile](https://github.com/nanoninja/php-fpm/blob/7.2.13/Dockerfile)
-- 7.2.2 [Dockerfile](https://github.com/nanoninja/php-fpm/blob/7.2.2/Dockerfile)
-- 7.1.14 [Dockerfile](https://github.com/nanoninja/php-fpm/blob/7.1.14/Dockerfile)
-- 5.6.40 [Dockerfile](https://github.com/nanoninja/php-fpm/blob/5.6.40/Dockerfile)
-- 5.6.32 [Dockerfile](https://github.com/nanoninja/php-fpm/blob/5.6.32/Dockerfile)
-
+- master [Dockerfile](https://github.com/ginsen/php-fpm/blob/master/Dockerfile)
+- 8.2 [Dockerfile](https://github.com/ginsen/php-fpm/blob/8.2/Dockerfile)
 ## What is PHP-FPM
 
 PHP-FPM (FastCGI Process Manager) is an alternative FastCGI implementation for PHP.
@@ -35,7 +15,7 @@ PHP-FPM (FastCGI Process Manager) is an alternative FastCGI implementation for P
 ## Getting image
 
 ```sh
-sudo docker image pull nanoninja/php-fpm
+sudo docker image pull ginsen/php-fpm
 ```
 
 ## Running your PHP script
@@ -43,13 +23,13 @@ sudo docker image pull nanoninja/php-fpm
 Run the PHP-FPM image, mounting a directory from your host.
 
 ```sh
-sudo docker container run --rm -v $(pwd):/var/www/html nanoninja/php-fpm php index.php
+sudo docker container run --rm -v $(pwd):/var/www/html ginsen/php-fpm php index.php
 ```
 
 ## Running as server
 
 ```sh
-sudo docker container run --rm --name phpfpm -v $(pwd):/var/www/html -p 3000:3000 nanoninja/php-fpm php -S="0.0.0.0:3000" -t="/var/www/html"
+sudo docker container run --rm --name phpfpm -v $(pwd):/var/www/html -p 3000:3000 ginsen/php-fpm php -S="0.0.0.0:3000" -t="/var/www/html"
 ```
 
 or using [Docker Compose](https://docs.docker.com/compose/) :
@@ -59,7 +39,7 @@ version: '3'
 services:
   phpfpm:
     container_name: phpfpm
-    image: nanoninja/php-fpm
+    image: ginsen/php-fpm
     ports:
       - 3000:3000
     volumes:
@@ -76,7 +56,7 @@ sudo docker container logs phpfpm
 ## Installed extensions
 
 ```bash
-sudo docker container run --rm nanoninja/php-fpm php -m
+sudo docker container run --rm ginsen/php-fpm php -m
 ```
 
 ### PHP Modules
