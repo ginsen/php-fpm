@@ -1,4 +1,4 @@
-FROM php:8.2-fpm-buster
+FROM php:8.3-fpm-bullseye
 
 RUN apt-get update && apt-get upgrade -y \
     && apt-get install -y \
@@ -78,9 +78,6 @@ RUN apt-get update && apt-get upgrade -y \
     && apt-get autoremove --purge -y && apt-get autoclean -y && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /tmp/* /var/tmp/*
-
-RUN apt-get update && apt-get install -y librabbitmq-dev && pecl install amqp
-RUN docker-php-ext-enable amqp
 
 RUN echo 'date.timezone = "Europe/Madrid"' > /usr/local/etc/php/conf.d/php-timezone.ini \
     && ln -fs /usr/share/zoneinfo/Europe/Madrid /etc/localtime \

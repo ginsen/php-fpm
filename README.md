@@ -7,6 +7,7 @@ Docker container to install and run [PHP-FPM](https://php-fpm.org/).
 ## Supported branches and respective Dockerfile links
 
 - master [Dockerfile](https://github.com/ginsen/php-fpm/blob/master/Dockerfile)
+- 8.3 [Dockerfile](https://github.com/ginsen/php-fpm/blob/8.3/Dockerfile)
 - 8.2 [Dockerfile](https://github.com/ginsen/php-fpm/blob/8.2/Dockerfile)
 ## What is PHP-FPM
 
