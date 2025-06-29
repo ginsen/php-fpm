@@ -7,13 +7,30 @@ Docker container to install and run [PHP-FPM](https://php-fpm.org/).
 ## Supported branches and respective Dockerfile links
 
 - master [Dockerfile](https://github.com/ginsen/php-fpm/blob/master/Dockerfile)
+- 8.3 [Dockerfile](https://github.com/ginsen/php-fpm/blob/8.3/Dockerfile)
 - 8.2 [Dockerfile](https://github.com/ginsen/php-fpm/blob/8.2/Dockerfile)
 ## What is PHP-FPM
 
 PHP-FPM (FastCGI Process Manager) is an alternative FastCGI implementation for PHP.
 
+## .env.dist to .env
+
+```shell
+cp .env.dist .env
+```
+And replace your locale and timezone attributes.
+
+## Build image
+
+This steep is no required, run this steep only if your required custom image 
+
+```shell
+docker build . --file Dockerfile --tag ginsen/php-fpm:8.2
+```
+
 ## Getting image
 
+Jump this steep if you build your custom image.
 ```sh
 sudo docker image pull ginsen/php-fpm
 ```
@@ -42,6 +59,10 @@ services:
     image: ginsen/php-fpm
     ports:
       - 3000:3000
+    environment:
+      - TIMEZONE=${TIMEZONE}
+      - LOCALE=${LOCALE}
+      - LANG=${LANG}
     volumes:
       - /path/to/your/app:/var/www/html
     command: php -S="0.0.0.0:3000" -t="/var/www/html"

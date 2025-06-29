@@ -82,15 +82,17 @@ RUN apt-get update && apt-get upgrade -y \
 RUN apt-get update && apt-get install -y librabbitmq-dev && pecl install amqp
 RUN docker-php-ext-enable amqp
 
-RUN echo 'date.timezone = "Europe/Madrid"' > /usr/local/etc/php/conf.d/php-timezone.ini \
-    && ln -fs /usr/share/zoneinfo/Europe/Madrid /etc/localtime \
+RUN echo "date.timezone = \"${TIMEZONE}\"" > /usr/local/etc/php/conf.d/php-timezone.ini \
+    && ln -fs /usr/share/zoneinfo/${TIMEZONE} /etc/localtime \
     && dpkg-reconfigure -f noninteractive tzdata \
     && mv /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y locales \
-    && echo "es_ES.UTF-8 UTF-8" > /etc/locale.gen \
+    && echo "${LOCALE} UTF-8" > /etc/locale.gen \
     && dpkg-reconfigure --frontend=noninteractive locales \
-    && update-locale LANG=es_ES.UTF-8
+    && update-locale LANG=${LOCALE}
+
+RUN sed -i "s/;intl.default_locale =/intl.default_locale=${LANG}/g" /usr/local/etc/php/php.ini
 
 # Setup pm.max.children
 RUN sed -i -e "s/pm.max_children = 5/pm.max_children = 20/g" /usr/local/etc/php-fpm.d/www.conf
