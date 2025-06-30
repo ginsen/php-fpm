@@ -59,6 +59,10 @@ services:
     image: ginsen/php-fpm
     ports:
       - 3000:3000
+    environment:
+      - TIMEZONE=${TIMEZONE}
+      - LOCALE=${LOCALE}
+      - LANG=${LANG}
     volumes:
       - /path/to/your/app:/var/www/html
     command: php -S="0.0.0.0:3000" -t="/var/www/html"
