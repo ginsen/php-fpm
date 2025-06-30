@@ -15,4 +15,4 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag latest:$(date +%s)
+      run: docker build --build-arg TIMEZONE=$(cat .env.dist | grep TIMEZONE | cut -d '=' -f2) --build-arg LOCALE=$(cat .env.dist | grep LOCALE | cut -d '=' -f2) --build-arg LANG=$(cat .env.dist | grep LANG | cut -d '=' -f2) . --file Dockerfile --tag latest:$(date +%s)

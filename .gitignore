@@ -10,3 +10,5 @@ TextMate2
 .vscode
 **/.DS_Store
 ###< IDE ###
+
+.env
