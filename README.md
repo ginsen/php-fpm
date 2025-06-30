@@ -25,7 +25,7 @@ And replace your locale and timezone attributes.
 This steep is no required, run this steep only if your required custom image 
 
 ```shell
-docker build . --file Dockerfile --tag ginsen/php-fpm:8.2
+docker build --build-arg TIMEZONE=$(cat .env.dist | grep TIMEZONE | cut -d '=' -f2) --build-arg LOCALE=$(cat .env.dist | grep LOCALE | cut -d '=' -f2) --build-arg LANG=$(cat .env.dist | grep LANG | cut -d '=' -f2) . --file Dockerfile --tag ginsen/php-fpm:8.2
 ```
 
 ## Getting image
