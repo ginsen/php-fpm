@@ -1,5 +1,9 @@
 FROM php:8.2-fpm-buster
 
+ARG TIMEZONE
+ARG LOCALE
+ARG LANG
+
 RUN apt-get update && apt-get upgrade -y \
     && apt-get install -y \
     vim \
